@@ -26,7 +26,7 @@
         > 
           <div [ngClass]="{'name-section':!changeClassAfterClickEdit , 'name-section-edit':changeClassAfterClickEdit}"> {{ dataOne.numberSection }} </div>
           <div [ngClass]="{'rows':!changeClassAfterClickEdit , 'rows-edit':changeClassAfterClickEdit}">
-            <div class="block-for-data-row" *ngFor='let dataTwo of dataOne.arrayWidthPlaces'>
+            <div class="block-for-data-row" [id]="'element-rotate' + dataOne.id" *ngFor='let dataTwo of dataOne.arrayWidthPlaces'>
               <div [ngClass]="{'rowName':!changeClassAfterClickEdit , 'rowNameEdit':changeClassAfterClickEdit}">{{ dataTwo?.nameRow }}</div>
                 <div 
                   [ngClass]="{'cheir':!changeClassAfterClickEdit , 'cheirEdit':changeClassAfterClickEdit}" 
@@ -85,7 +85,18 @@
       <!-- SETTINGS OBJECT SECTION -->
       <div class="panel-edit-setting-object" *ngIf="displayPanelsSettings === 'panel-setting-object-section'">
         <div class="panel-edit-setting-object__block-for-data-about-section-and-rotate">
-          
+          <div class="panel-edit-setting-object__panel-rotate-section">
+            <div class="panel-edit-setting-object__title-rotete">
+              Rotate
+            </div>
+            <div class="panel-edit-setting-object__block-for-slider">
+              <input 
+                type="range" step="10" min="-180" max="180" value="0" id='slider' 
+                class="panel-edit-setting-object__slider"
+                (mousemove)='sliderMouseMove($event.target.value)'
+              >
+            </div>
+          </div>
         </div>
         <div class="panel-edit-setting-object__panel-tool">
           <div class="panel-edit-setting-object__button" (click)='changeViewMapAndSection()'>
@@ -104,6 +115,11 @@
       </div>
       
       <!-- PANRL FOR EDITING SECTION -->
+
+      <div class="blokc-panel-edit-section">
+
+      </div>
+
       <div class="block-panel-edit-chair" *ngIf="displayPanelsSettings==='editing-cair-settings'">
         <div class="block-panel-edit-chair__title">
           Unit Information

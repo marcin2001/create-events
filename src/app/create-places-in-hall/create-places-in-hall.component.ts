@@ -114,7 +114,24 @@ export class CreatePlacesInHallComponent implements OnInit, OnChanges {
     console.log( arr )
   }  
 
-  // FUNCTIONAL MOVE
+  // FUNCTIONAL ROTATE SECTION
+
+  sliderMouseMove(value){
+    var id = this.idSelectedSectionForDiferentOperation;
+    var slider = document.getElementById('section'+id);
+    slider.style.transform = 'rotate(' + value + 'deg)';
+    var elements:any = slider.getElementsByTagName('DIV');
+    var arrWithElements:any = [];
+    for (let i = 0; i < elements.length; i++) {
+      arrWithElements.push( elements[i] )    
+    }
+    arrWithElements.map(a=>{
+      if( a.className != 'block-for-data-row' && a.className != 'rows' ) a.style.transform = 'rotate(' + (-value) + 'deg)'
+    })
+    
+  }
+
+  // FUNCTIONAL MOVE SECTION
 
 
   isMouseDown = false;
@@ -126,7 +143,7 @@ export class CreatePlacesInHallComponent implements OnInit, OnChanges {
     this.selectedSection(id)
     this.idElem = "section" + id;
   	this.contX = (e.clientX - document.getElementById(this.idElem).offsetLeft + document.getElementById('map').offsetLeft );
-    this.contY = (e.clientY - document.getElementById(this.idElem).offsetTop + document.getElementById('map').offsetTop );
+    this.contY = (e.clientY - document.getElementById(this.idElem).offsetTop + document.getElementById('map').offsetTop - 0 );
     this.isMouseDown = true;
   }
 
