@@ -1,0 +1,153 @@
+<div class="container-for-all-elements" id="container">
+
+  <div class="header">
+    <div class="block-for-items">
+
+    </div>
+    <div class="block-for-save-or-close">
+      <button class="button-save" (click)='pushAllSectionInArrayWidthSection()'>
+        SAVE
+      </button>
+      <i routerLink='/home' class="fa fa-times" aria-hidden="true"></i>
+    </div>
+  </div>
+  
+  <div class="container-for-panel-and-map">
+    <div class="container-for-map" id="map"
+        (mouseup)='functionForUpSection()'
+        (mousemove)='functionForMoveSection($event)'
+        >
+        <div
+          [ngClass]="{'container-for-map__block-map':!changeClassAfterClickEdit , 'container-for-map__block-map-edit':changeClassAfterClickEdit}"
+          *ngFor='let dataOne of dataSection'
+          [id]="'section' + dataOne.id"
+          (mousedown)='functionForDownSection($event, dataOne.id)'
+          (click)='selectedSection(dataOne.id)'
+        > 
+          <div [ngClass]="{'name-section':!changeClassAfterClickEdit , 'name-section-edit':changeClassAfterClickEdit}"> {{ dataOne.numberSection }} </div>
+          <div [ngClass]="{'rows':!changeClassAfterClickEdit , 'rows-edit':changeClassAfterClickEdit}">
+            <div class="block-for-data-row" *ngFor='let dataTwo of dataOne.arrayWidthPlaces'>
+              <div [ngClass]="{'rowName':!changeClassAfterClickEdit , 'rowNameEdit':changeClassAfterClickEdit}">{{ dataTwo?.nameRow }}</div>
+                <div 
+                  [ngClass]="{'cheir':!changeClassAfterClickEdit , 'cheirEdit':changeClassAfterClickEdit}" 
+                  [ngStyle]="{border: (place.selected ? '4px solid #0093D7' : '4px solid rgba(0,0,0,0.4)' )}"
+                  *ngFor='let place of dataTwo.arrWithChear'
+                  (click)='selectChair(dataOne.id, place.id)'
+                >
+                  {{ place?.seat }}
+                </div>
+              <div [ngClass]="{'rowName':!changeClassAfterClickEdit , 'rowNameEdit':changeClassAfterClickEdit}">{{ dataTwo?.nameRow }}</div>
+            </div>
+          </div> 
+        </div>
+    </div>
+
+    <div class="panel-for-create-objects">
+      <div class="block-for-title"> 
+        <div class="block-for-title__title-capacity">Capacity</div>
+        <div class="block-for-title__title-number">50</div>
+      </div>
+      
+      <div class="panel-for-menu" *ngIf="displayPanelsSettings==='base-panel-with-tool' || displayPanelsSettings==='panel-setting-section'">
+        <div class="panel-for-menu__tools" (click)='switchDispalyPanelSettings("panel-setting-section")'>1</div>
+        <div class="panel-for-menu__tools">2</div>
+        <div class="panel-for-menu__tools">3</div>
+        <div class="panel-for-menu__tools">4</div>  
+      </div>
+
+      <!-- SETTINGS SECTION -->
+      <div class="panel-with-settings-section" *ngIf="displayPanelsSettings === 'panel-setting-section'">
+        <div class="panel-with-settings-section__block-for-input">
+            <input [(ngModel)]='sectionNumber' type="text" class="panel-with-settings-section__input-for-number-object">
+        </div>
+        <select class="panel-with-settings-section__select">
+            <option value="volvo">Assigned Seating</option>
+            <option value="saab">General Admission</option>
+          </select>
+        <div class="panel-with-settings-section__block-for-input-title-rows">
+          <div class="panel-with-settings-section__title-rows">Rows</div>
+          <div class="panel-with-settings-section__block-for-input-rows">
+            <input type="text" [(ngModel)]='sectionRows' class="panel-with-settings-section__input-rows">
+          </div>
+        </div>
+        <div class="panel-with-settings-section__block-for-input-title-seats">
+          <div class="panel-with-settings-section__title-seats">Seats</div>
+          <div class="panel-with-settings-section__block-for-input-seats">
+            <input type="text" [(ngModel)]='sectionSeats' class="panel-with-settings-section__input-seats">
+          </div>
+        </div>
+        <div class="panel-with-settings-section__block-for-buttons">
+            <button class="panel-with-settings-section__button-cancel">CANCEL</button>
+            <button class="panel-with-settings-section__button-create" (click)="createDataForSection()" >CREATE</button>
+        </div>
+      </div>
+
+      <!-- SETTINGS OBJECT SECTION -->
+      <div class="panel-edit-setting-object" *ngIf="displayPanelsSettings === 'panel-setting-object-section'">
+        <div class="panel-edit-setting-object__block-for-data-about-section-and-rotate">
+          
+        </div>
+        <div class="panel-edit-setting-object__panel-tool">
+          <div class="panel-edit-setting-object__button" (click)='changeViewMapAndSection()'>
+            <i class="fa fa-pencil" aria-hidden="true"></i>
+            Edit
+          </div>
+          <div class="panel-edit-setting-object__button" (click)='duplicateSection()' >
+            <i class="fa fa-plus-square-o" aria-hidden="true"></i>
+            Duplicate
+          </div>
+          <div class="panel-edit-setting-object__button" (click)='deleteSelectedSection()'>
+            <i class="fa fa-trash-o" aria-hidden="true"></i>
+            Delete
+          </div>
+        </div>
+      </div>
+      
+      <!-- PANRL FOR EDITING SECTION -->
+      <div class="block-panel-edit-chair" *ngIf="displayPanelsSettings==='editing-cair-settings'">
+        <div class="block-panel-edit-chair__title">
+          Unit Information
+        </div>
+        <div class="block-panel-edit-chair__block-for-input-row-and-title">
+          <div class="block-panel-edit-chair__title-row">
+            Row
+          </div>
+          <div class="block-panel-edit-chair__block-for-input">
+            <input 
+              type="text"
+              class="block-panel-edit-chair__input"
+              [(ngModel)]='nameChairRow'
+              (keyup)='editDataChair()'
+            >
+          </div>
+        </div>
+        <div class="block-panel-edit-chair__block-for-input-row-and-title">
+          <div class="block-panel-edit-chair__title-row">
+            Seat
+          </div>
+          <div class="block-panel-edit-chair__block-for-input">
+            <input 
+              type="text"
+              class="block-panel-edit-chair__input"
+              [(ngModel)]='nameSeat'
+              (keyup)='editDataChair()'
+            >
+          </div>
+
+        </div>
+        <div class="block-panel-edit-chair__button" (click)='postEditedObject()' >
+          DONE
+        </div>
+        <hr>
+        <div class="block-panel-edit-chair__block-delete" (click)='deleteChair()' >
+          <i class="fa fa-trash-o" aria-hidden="true"></i>
+          Delete Unit
+        </div>
+      </div>
+
+    </div>
+  </div> 
+
+  
+  
+</div>
