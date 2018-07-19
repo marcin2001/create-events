@@ -14,6 +14,7 @@ export class CreatePlacesInHallComponent implements OnInit, OnChanges {
   changeClassAfterClickEdit = false;
   idForSelectElementsAfterCreateThem = 1;
   memoryEvents = 1;
+  needTitle = true;
 
   // DATA FOR SECTION
   displayPanelsSettings = 'base-panel-with-tool';
@@ -28,6 +29,11 @@ export class CreatePlacesInHallComponent implements OnInit, OnChanges {
   idEditedSection = 0;
   idEditedChair = 0;
   editedObjectForPost:any;
+  chosenAlign = 'justify';
+
+  sectionCountRowName = 'Row';
+  sectionCountSeatName = 'Seat';
+  sectionTotalChair:number = 0;
 
   constructor(
     private myService: CreatePlacesServeice
@@ -77,7 +83,7 @@ export class CreatePlacesInHallComponent implements OnInit, OnChanges {
       object.arrayWidthPlaces.push(
         {
           nameRow:alphabet[index-1].toUpperCase(),
-          arrWithChear:[]
+          arrWithChair:[]
         }
       )
       index++;
@@ -85,7 +91,7 @@ export class CreatePlacesInHallComponent implements OnInit, OnChanges {
     object.arrayWidthPlaces.map(a=>{
 
       for (let i = 1; i < sectSeat; i++) {
-        a.arrWithChear.push(
+        a.arrWithChair.push(
           {
             seat: i,
             selected: false,
@@ -104,7 +110,6 @@ export class CreatePlacesInHallComponent implements OnInit, OnChanges {
     this.sectionNumber++;
     this.switchDispalyPanelSettings('panel-setting-object-section');
     this.idForSelectElementsAfterCreateThem++;
-    this.selectedSection(dataId);
   }
 
   duplicateSection(){
@@ -115,7 +120,13 @@ export class CreatePlacesInHallComponent implements OnInit, OnChanges {
     this.myService.postDataSection(arr).subscribe((data:any)=> {
       this.refreshDataSection()
     });
-  }  
+  } 
+  
+  
+
+
+
+
 
   // FUNCTIONAL ROTATE SECTION
 
@@ -133,6 +144,34 @@ export class CreatePlacesInHallComponent implements OnInit, OnChanges {
     })
     
   }
+
+
+
+  // FUNCTIONAL SKEW SECTION
+
+  skewSection(value){
+    var id = this.idSelectedSectionForDiferentOperation;
+    var slider = document.getElementById('section'+id);
+    // slider.style.transform = 'skewY(' + value + 'deg)';
+    var elements:any = slider.getElementsByTagName('DIV');
+    var arrWithElements:any = [];
+    for (let i = 0; i < elements.length; i++) {
+      arrWithElements.push( elements[i] )    
+    }
+    arrWithElements.map(a=>{
+      if(a.className != "rows-edit" && a.className != 'name-section-edit' ) {
+        if( a.className === 'block-for-data-row' ) {
+          a.style.transform = 'skewY(' + value + 'deg)'
+        } else a.style.transform = 'skewY(' + -value + 'deg)'
+      }
+    })
+  }
+
+
+
+
+
+
 
   // FUNCTIONAL MOVE SECTION
 
@@ -157,8 +196,16 @@ export class CreatePlacesInHallComponent implements OnInit, OnChanges {
         document.getElementById(a).style.border = '3px dashed #0093D7';
       } else document.getElementById(a).style.border = 'none';  
     })
-    if( this.displayPanelsSettings != 'editing-cair-settings' ) {
+    if( this.displayPanelsSettings != 'editing-cair-settings' && this.displayPanelsSettings != 'panel-edit-section' ) {
       this.displayPanelsSettings = 'panel-setting-object-section';
+    }
+
+    var arr = this.dataSection.filter(data => data.id === id);
+    arr = arr[0];
+    var arrPlaces = arr.arrayWidthPlaces;
+    this.sectionTotalChair = 0;
+    for (let i = 0; i < arrPlaces.length; i++) {
+      this.sectionTotalChair += arrPlaces[i].arrWithChair.length
     }
   }
 
@@ -175,6 +222,11 @@ export class CreatePlacesInHallComponent implements OnInit, OnChanges {
     }
   }
 
+
+
+
+
+
   // FUNCTIONS FOR EDIT SECTION
 
   changeViewMapAndSection(){
@@ -184,7 +236,19 @@ export class CreatePlacesInHallComponent implements OnInit, OnChanges {
     map.style.background = 'rgba(0,0,0,0.65)';
     section.style.pointerEvents = 'none';
     this.changeClassAfterClickEdit = true;
-    this.displayPanelsSettings = 'editing-cair-settings';
+    this.displayPanelsSettings = 'panel-edit-section';
+    this.needTitle = false;
+  }
+
+  changeViewBack(){
+    var map = document.getElementById('map');
+    var section = document.getElementById('section' + this.idSelectedSectionForDiferentOperation);
+    section.style.border = '';
+    map.style.background = 'white';
+    section.style.pointerEvents = 'all';
+    this.changeClassAfterClickEdit = false;
+    this.displayPanelsSettings = 'base-panel-with-tool';
+    this.needTitle = true;
   }
   
   selectChair(idSection, idCair){
@@ -194,7 +258,7 @@ export class CreatePlacesInHallComponent implements OnInit, OnChanges {
     var arr = this.dataSection.filter(data => data.id === idSection);
     arr = arr[0];
     arr.arrayWidthPlaces.map(a=>{
-      a.arrWithChear.map(data=>{
+      a.arrWithChair.map(data=>{
         if( data.id === idCair ) {
           data.selected = true;
           this.nameSeat = data.seat;
@@ -202,49 +266,51 @@ export class CreatePlacesInHallComponent implements OnInit, OnChanges {
         }
       })
     })
-    
+    this.editedObjectForPost = arr;
   }
 
-  editDataChair(){
+  editDataChair(event){
     var editedChairObject = {
       seat: this.nameSeat,
       selected: false,
       id:this.idEditedChair
     }
-    var arr = this.dataSection.filter(data => data.id === this.idEditedSection);
-    arr = arr[0];
+    var arr = this.dataSection.filter(data => data.id === this.idEditedSection)[0];
     arr.arrayWidthPlaces.map(a=>{
-      a.arrWithChear.map(data=>{
+      a.arrWithChair.map(data=>{
         if( data.id === this.idEditedChair ){
           a.nameRow = this.nameChairRow;
-          a.arrWithChear.splice( 
-            a.arrWithChear.indexOf(data),
+          a.arrWithChair.splice( 
+            a.arrWithChair.indexOf(data),
             1,
             editedChairObject
           )
         } 
       })
     })
-    this.editedObjectForPost = arr;
   }
   
   postEditedObject(){
-    if( this.editedObjectForPost != undefined ) {
-      this.myService.updateSections(this.editedObjectForPost.id , this.editedObjectForPost).subscribe(data => {
-        console.log( data )
-        this.refreshDataSection()
-      })
-    }
+    this.dataSection.map(a=>{
+      if( a.id === this.editedObjectForPost.id ) {
+        a.arrayWidthPlaces.map(data =>{
+          data.arrWithChair.map(chair=>{
+            chair.selected = false;
+          })
+        })
+      }
+    });
+    this.displayPanelsSettings = 'panel-edit-section';
   }
 
   deleteChair(){
     var arr = this.dataSection.filter(data => data.id === this.idEditedSection);
     arr = arr[0];
     arr.arrayWidthPlaces.map(a=>{
-      a.arrWithChear.map(data=>{
+      a.arrWithChair.map(data=>{
         if( data.id === this.idEditedChair ){
-          a.arrWithChear.splice( 
-            a.arrWithChear.indexOf(data),
+          a.arrWithChair.splice( 
+            a.arrWithChair.indexOf(data),
             1
           )
         } 
@@ -255,6 +321,13 @@ export class CreatePlacesInHallComponent implements OnInit, OnChanges {
       this.refreshDataSection()
     })
   }
+
+
+
+
+
+
+
 
   // FUNCTION DELETE SECTOIN
 
@@ -269,7 +342,21 @@ export class CreatePlacesInHallComponent implements OnInit, OnChanges {
   }
 
   resizeInput(e){
-    console.log( this )
+    var inputs = document.getElementsByTagName('INPUT');
+    var arr = [];
+    for (let i = 0; i < inputs.length; i++) {
+      arr.push( inputs[i] )      
+    }
+    arr.map(a=>{
+      if( a.className === e.target.className ) { 
+        if( e.target.value.length != 0 ) a.style.width = (e.target.value.length * 20) + 'px';
+        else a.style.width = 20 + 'px';
+      }
+    })
+  }
+
+  changeAlignment(arg){
+    this.chosenAlign = arg;
   }
   
 }

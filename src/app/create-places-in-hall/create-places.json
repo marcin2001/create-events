@@ -5,7 +5,7 @@
       "arrayWidthPlaces": [
         {
           "nameRow": "A",
-          "arrWithChear": [
+          "arrWithChair": [
             {
               "seat": 1,
               "selected": false,
@@ -60,7 +60,7 @@
         },
         {
           "nameRow": "B",
-          "arrWithChear": [
+          "arrWithChair": [
             {
               "seat": 1,
               "selected": false,
@@ -115,7 +115,7 @@
         },
         {
           "nameRow": "C",
-          "arrWithChear": [
+          "arrWithChair": [
             {
               "seat": 1,
               "selected": false,
@@ -170,7 +170,7 @@
         },
         {
           "nameRow": "D",
-          "arrWithChear": [
+          "arrWithChair": [
             {
               "seat": 1,
               "selected": false,
@@ -225,7 +225,7 @@
         },
         {
           "nameRow": "E",
-          "arrWithChear": [
+          "arrWithChair": [
             {
               "seat": 1,
               "selected": false,

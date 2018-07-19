@@ -26,12 +26,12 @@
         > 
           <div [ngClass]="{'name-section':!changeClassAfterClickEdit , 'name-section-edit':changeClassAfterClickEdit}"> {{ dataOne.numberSection }} </div>
           <div [ngClass]="{'rows':!changeClassAfterClickEdit , 'rows-edit':changeClassAfterClickEdit}">
-            <div class="block-for-data-row" [id]="'element-rotate' + dataOne.id" *ngFor='let dataTwo of dataOne.arrayWidthPlaces'>
+            <div class="block-for-data-row"  *ngFor='let dataTwo of dataOne.arrayWidthPlaces'>
               <div [ngClass]="{'rowName':!changeClassAfterClickEdit , 'rowNameEdit':changeClassAfterClickEdit}">{{ dataTwo?.nameRow }}</div>
                 <div 
                   [ngClass]="{'cheir':!changeClassAfterClickEdit , 'cheirEdit':changeClassAfterClickEdit}" 
                   [ngStyle]="{border: (place.selected ? '4px solid #0093D7' : '4px solid rgba(0,0,0,0.4)' )}"
-                  *ngFor='let place of dataTwo.arrWithChear'
+                  *ngFor='let place of dataTwo.arrWithChair'
                   (click)='selectChair(dataOne.id, place.id)'
                 >
                   {{ place?.seat }}
@@ -43,7 +43,7 @@
     </div>
 
     <div class="panel-for-create-objects">
-      <div class="block-for-title"> 
+      <div class="block-for-title" *ngIf='needTitle'> 
         <div class="block-for-title__title-capacity">Capacity</div>
         <div class="block-for-title__title-number">50</div>
       </div>
@@ -58,7 +58,7 @@
       <!-- SETTINGS SECTION -->
       <div class="panel-with-settings-section" *ngIf="displayPanelsSettings === 'panel-setting-section'">
         <div class="panel-with-settings-section__block-for-input">
-            <input [(ngModel)]='sectionNumber' type="text" class="panel-with-settings-section__input-for-number-object">
+            <input [(ngModel)]='sectionNumber' (keyup)='resizeInput($event)' type="text" class="panel-with-settings-section__input-for-number-object">
         </div>
         <select class="panel-with-settings-section__select"> 
             <option value="volvo">Assigned Seating</option>
@@ -73,7 +73,7 @@
         <div class="panel-with-settings-section__block-for-input-title-seats">
           <div class="panel-with-settings-section__title-seats">Seats</div>
           <div class="panel-with-settings-section__block-for-input-seats">
-            <input type="text" [(ngModel)]='sectionSeats' class="panel-with-settings-section__input-seats">
+            <input type="text" (keyup)='resizeInput($event)' [(ngModel)]='sectionSeats' class="panel-with-settings-section__input-seats">
           </div>
         </div>
         <div class="panel-with-settings-section__block-for-buttons">
@@ -116,7 +116,79 @@
       
       <!-- PANRL FOR EDITING SECTION -->
 
-      
+      <div class="block-panel-edit-section" *ngIf="displayPanelsSettings === 'panel-edit-section'">
+        <div class="block-panel-edit-section__block-for-input">
+            <input [(ngModel)]='sectionNumber' (keyup)='resizeInput($event)' type="text" class="block-panel-edit-section__input-for-number-object">
+        </div>
+        <div class="block-panel-edit-section__block-for-button-layout-lable">
+          <div class="block-panel-edit-section__button-layout"> LAYOUT </div>
+          <div class="block-panel-edit-section__button-label"> LABEL </div>
+        </div>
+        <div class="block-panel-edit-section__block-row-count">
+          <div class="block-panel-edit-section__title-row-count">
+            {{ sectionCountRowName }} count
+          </div>
+          <input type="text" [(ngModel)]='sectionRows' (keyup)='resizeInput($event)' class="block-panel-edit-section__inputR">
+        </div>
+        <div class="block-panel-edit-section__block-row-count">
+          <div class="block-panel-edit-section__title-row-count">
+            {{ sectionCountSeatName }} count per Row
+          </div>
+          <input type="text" [(ngModel)]='sectionSeats' (keyup)='resizeInput($event)' class="block-panel-edit-section__inputS">
+        </div>
+        <div class="block-panel-edit-section__block-row-count">
+          <div class="block-panel-edit-section__title-row-count">
+            Total
+          </div>
+          <div class="block-panel-edit-section__total-number">
+            {{ sectionTotalChair }}
+          </div>
+        </div>
+        <div class="block-panel-edit-section__block-row-count">
+          <div class="block-panel-edit-section__title-row-count">
+            Alignment
+          </div>
+          <div class="block-panel-edit-section__block-icon-align">
+            <i (click)="changeAlignment('center')" [class]="chosenAlign === 'center' ? 'chosen fa fa-align-center' : 'not-chosen fa fa-align-center'" aria-hidden="true"></i>
+            <i (click)="changeAlignment('justify')" [class]="chosenAlign === 'justify' ? 'chosen fa fa-align-justify' : 'not-chosen fa fa-align-justify'" aria-hidden="true"></i>
+          </div>
+        </div>
+        <div class="block-panel-edit-section__block-row-count">
+          <div class="block-panel-edit-section__title-row-count">
+            Curve
+          </div>
+          <div class="block-panel-edit-section__block-joist-skew">
+            <input 
+                type="range" step="10" min="-180" max="180" value="0" id='slider' 
+                class="block-panel-edit-section__slider"
+              >
+          </div>
+        </div>
+        <div class="block-panel-edit-section__block-row-count">
+          <div class="block-panel-edit-section__title-row-count">
+            Skew
+          </div>
+          <div class="block-panel-edit-section__block-joist-skew">
+            <input 
+                type="range" step="10" min="-40" max="40" value="0" id='slider-skew' 
+                class="block-panel-edit-section__slider"
+                (mousemove)='skewSection($event.target.value)'
+              >
+          </div>
+        </div>
+        <div class="block-panel-edit-section__block-row-count">
+          <div class="block-panel-edit-section__block-for-buttons-cancel-apply">
+            <div class="block-panel-edit-section__button-cancel">
+              CANCEL
+            </div>
+            <div class="block-panel-edit-section__button-apply" (click)='changeViewBack()' >
+              APPLY
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- edit settings chair -->
 
       <div class="block-panel-edit-chair" *ngIf="displayPanelsSettings==='editing-cair-settings'">
         <div class="block-panel-edit-chair__title">
@@ -131,7 +203,7 @@
               type="text"
               class="block-panel-edit-chair__input"
               [(ngModel)]='nameChairRow'
-              (keyup)='editDataChair()'
+              (keyup)='editDataChair($event)'
             >
           </div>
         </div>
@@ -144,7 +216,7 @@
               type="text"
               class="block-panel-edit-chair__input"
               [(ngModel)]='nameSeat'
-              (keyup)='editDataChair()'
+              (keyup)='editDataChair($event)'
             >
           </div>
 
