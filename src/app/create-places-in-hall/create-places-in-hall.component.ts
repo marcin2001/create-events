@@ -109,9 +109,12 @@ export class CreatePlacesInHallComponent implements OnInit, OnChanges {
 
   duplicateSection(){
     var arr = this.dataSection.filter(a=>a.id === this.idSelectedSectionForDiferentOperation);
+    arr = arr[0];
     arr.numberSection = this.sectionNumber;
     delete arr.id;
-    console.log( arr )
+    this.myService.postDataSection(arr).subscribe((data:any)=> {
+      this.refreshDataSection()
+    });
   }  
 
   // FUNCTIONAL ROTATE SECTION
@@ -263,6 +266,10 @@ export class CreatePlacesInHallComponent implements OnInit, OnChanges {
       .subscribe(data=>this.refreshDataSection())
     }
     
+  }
+
+  resizeInput(e){
+    console.log( this )
   }
   
 }

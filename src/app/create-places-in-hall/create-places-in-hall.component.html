@@ -60,14 +60,14 @@
         <div class="panel-with-settings-section__block-for-input">
             <input [(ngModel)]='sectionNumber' type="text" class="panel-with-settings-section__input-for-number-object">
         </div>
-        <select class="panel-with-settings-section__select"> vfhj
+        <select class="panel-with-settings-section__select"> 
             <option value="volvo">Assigned Seating</option>
             <option value="saab">General Admission</option>
           </select>
         <div class="panel-with-settings-section__block-for-input-title-rows">
           <div class="panel-with-settings-section__title-rows">Rows</div>
           <div class="panel-with-settings-section__block-for-input-rows">
-            <input type="text" [(ngModel)]='sectionRows' class="panel-with-settings-section__input-rows">
+            <input type="text" (keyup)='resizeInput($event)' [(ngModel)]='sectionRows' class="panel-with-settings-section__input-rows">
           </div>
         </div>
         <div class="panel-with-settings-section__block-for-input-title-seats">
@@ -97,6 +97,7 @@
               >
             </div>
           </div>
+          Myroslav
         </div>
         <div class="panel-edit-setting-object__panel-tool">
           <div class="panel-edit-setting-object__button" (click)='changeViewMapAndSection()'>
@@ -116,9 +117,7 @@
       
       <!-- PANRL FOR EDITING SECTION -->
 
-      <div class="blokc-panel-edit-section">
-
-      </div>
+      
 
       <div class="block-panel-edit-chair" *ngIf="displayPanelsSettings==='editing-cair-settings'">
         <div class="block-panel-edit-chair__title">
