@@ -12,7 +12,7 @@
     </div>
   </div>
   
-  <div class="container-for-panel-and-map">
+  <div class="container-for-panel-and-map" id="container-map" (click)='selectContainerMap()'>
     <div class="container-for-map" id="map"
         (mouseup)='functionForUpSection()'
         (mousemove)='functionForMoveSection($event)'
@@ -27,16 +27,16 @@
           <div [ngClass]="{'name-section':!changeClassAfterClickEdit , 'name-section-edit':changeClassAfterClickEdit}"> {{ dataOne.numberSection }} </div>
           <div [ngClass]="{'rows':!changeClassAfterClickEdit , 'rows-edit':changeClassAfterClickEdit}">
             <div class="block-for-data-row"  *ngFor='let dataTwo of dataOne.arrayWidthPlaces'>
-              <div [ngClass]="{'rowName':!changeClassAfterClickEdit , 'rowNameEdit':changeClassAfterClickEdit}">{{ dataTwo?.nameRow }}</div>
+              <div [ngClass]="{'rowName':!changeClassAfterClickEdit , 'rowNameEdit':changeClassAfterClickEdit}"><div class="row-span">{{ dataTwo?.nameRow }}</div></div>
                 <div 
                   [ngClass]="{'cheir':!changeClassAfterClickEdit , 'cheirEdit':changeClassAfterClickEdit}" 
                   [ngStyle]="{border: (place.selected ? '4px solid #0093D7' : '4px solid rgba(0,0,0,0.4)' )}"
                   *ngFor='let place of dataTwo.arrWithChair'
-                  (click)='selectChair(dataOne.id, place.id)'
+                  (click)='selectChair(dataOne.id, place.id , $event)'
                 >
-                  {{ place?.seat }}
+                  <div class="cheir-span"> {{ place?.seat }} </div>
                 </div>
-              <div [ngClass]="{'rowName':!changeClassAfterClickEdit , 'rowNameEdit':changeClassAfterClickEdit}">{{ dataTwo?.nameRow }}</div>
+              <div [ngClass]="{'rowName':!changeClassAfterClickEdit , 'rowNameEdit':changeClassAfterClickEdit}"><div class="row-span">{{ dataTwo?.nameRow }}</div></div>
             </div>
           </div> 
         </div>
@@ -91,7 +91,7 @@
             </div>
             <div class="panel-edit-setting-object__block-for-slider">
               <input 
-                type="range" step="10" min="-180" max="180" value="0" id='slider' 
+                type="range" step="5" min="-180" max="180" [(ngModel)]='valueRotate' id='slider' 
                 class="panel-edit-setting-object__slider"
                 (mousemove)='sliderMouseMove($event.target.value)'
               >
@@ -121,20 +121,28 @@
             <input [(ngModel)]='sectionNumber' (keyup)='resizeInput($event)' type="text" class="block-panel-edit-section__input-for-number-object">
         </div>
         <div class="block-panel-edit-section__block-for-button-layout-lable">
-          <div class="block-panel-edit-section__button-layout"> LAYOUT </div>
-          <div class="block-panel-edit-section__button-label"> LABEL </div>
+          <div
+            [class]='switcherClasswsBetweenLayoutAndLable === "layout" ?
+            "block-panel-edit-section__button-layout-selected" : 
+            "block-panel-edit-section__button-layout" ' 
+          > LAYOUT </div>
+          <div 
+            [class]='switcherClasswsBetweenLayoutAndLable === "label" ?
+            "block-panel-edit-section__button-label-selected" : 
+            "block-panel-edit-section__button-label" ' 
+          > LABEL </div>
         </div>
         <div class="block-panel-edit-section__block-row-count">
           <div class="block-panel-edit-section__title-row-count">
             {{ sectionCountRowName }} count
           </div>
-          <input type="text" [(ngModel)]='sectionRows' (keyup)='resizeInput($event)' class="block-panel-edit-section__inputR">
+          <input type="text" [(ngModel)]='sectionRows' (keyup)='changeCountSetAndRow()' class="block-panel-edit-section__inputR">
         </div>
         <div class="block-panel-edit-section__block-row-count">
           <div class="block-panel-edit-section__title-row-count">
             {{ sectionCountSeatName }} count per Row
           </div>
-          <input type="text" [(ngModel)]='sectionSeats' (keyup)='resizeInput($event)' class="block-panel-edit-section__inputS">
+          <input type="number" min="1" max="5" [(ngModel)]='sectionSeats' (keyup)='changeCountSetAndRow()' class="block-panel-edit-section__inputS">
         </div>
         <div class="block-panel-edit-section__block-row-count">
           <div class="block-panel-edit-section__title-row-count">
@@ -159,8 +167,11 @@
           </div>
           <div class="block-panel-edit-section__block-joist-skew">
             <input 
-                type="range" step="10" min="-180" max="180" value="0" id='slider' 
+                type="range" step="1" min="-100" max="100" [(ngModel)]='valueCurve' id='slider' 
                 class="block-panel-edit-section__slider"
+                (mousemove)='curveSection(valueCurve)'
+                (mousedown)='downMouceForCurve()'
+                (mouseup)='upMouseForCurve()'
               >
           </div>
         </div>
@@ -170,7 +181,7 @@
           </div>
           <div class="block-panel-edit-section__block-joist-skew">
             <input 
-                type="range" step="10" min="-40" max="40" value="0" id='slider-skew' 
+                type="range" step="10" min="-40" max="40" [(ngModel)]='valueSkew' id='slider-skew' 
                 class="block-panel-edit-section__slider"
                 (mousemove)='skewSection($event.target.value)'
               >
@@ -216,7 +227,7 @@
               type="text"
               class="block-panel-edit-chair__input"
               [(ngModel)]='nameSeat'
-              (keyup)='editDataChair($event)'
+              (keyup)='editDataChair()'
             >
           </div>
 
