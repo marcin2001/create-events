@@ -2,6 +2,7 @@
   "SectionPlaces": [
     {
       "numberSection": 1,
+      "priceAllSeats": 100,
       "arrayWidthPlaces": [
         {
           "nameRow": "A",
@@ -9,51 +10,81 @@
             {
               "seat": 1,
               "selected": false,
+              "price": 100,
+              "currency": "dollar",
+              "background": "",
               "id": 1
             },
             {
               "seat": 2,
               "selected": false,
+              "price": 100,
+              "currency": "dollar",
+              "background": "",
               "id": 2
             },
             {
               "seat": 3,
               "selected": false,
+              "price": 100,
+              "currency": "dollar",
+              "background": "",
               "id": 3
             },
             {
               "seat": 4,
               "selected": false,
+              "price": 100,
+              "currency": "dollar",
+              "background": "",
               "id": 4
             },
             {
               "seat": 5,
               "selected": false,
+              "price": 100,
+              "currency": "dollar",
+              "background": "",
               "id": 5
             },
             {
               "seat": 6,
               "selected": false,
+              "price": 100,
+              "currency": "dollar",
+              "background": "",
               "id": 6
             },
             {
               "seat": 7,
               "selected": false,
+              "price": 100,
+              "currency": "dollar",
+              "background": "",
               "id": 7
             },
             {
               "seat": 8,
               "selected": false,
+              "price": 100,
+              "currency": "dollar",
+              "background": "",
               "id": 8
             },
             {
               "seat": 9,
               "selected": false,
+              "price": 100,
+              "currency": "dollar",
+              "background": "",
               "id": 9
             },
             {
               "seat": 10,
               "selected": false,
+              "price": 100,
+              "currency": "dollar",
+              "background": "",
               "id": 10
             }
           ]
@@ -64,51 +95,81 @@
             {
               "seat": 1,
               "selected": false,
+              "price": 100,
+              "currency": "dollar",
+              "background": "",
               "id": 11
             },
             {
               "seat": 2,
               "selected": false,
+              "price": 100,
+              "currency": "dollar",
+              "background": "",
               "id": 12
             },
             {
               "seat": 3,
               "selected": false,
+              "price": 100,
+              "currency": "dollar",
+              "background": "",
               "id": 13
             },
             {
               "seat": 4,
               "selected": false,
+              "price": 100,
+              "currency": "dollar",
+              "background": "",
               "id": 14
             },
             {
               "seat": 5,
               "selected": false,
+              "price": 100,
+              "currency": "dollar",
+              "background": "",
               "id": 15
             },
             {
               "seat": 6,
               "selected": false,
+              "price": 100,
+              "currency": "dollar",
+              "background": "",
               "id": 16
             },
             {
               "seat": 7,
               "selected": false,
+              "price": 100,
+              "currency": "dollar",
+              "background": "",
               "id": 17
             },
             {
               "seat": 8,
               "selected": false,
+              "price": 100,
+              "currency": "dollar",
+              "background": "",
               "id": 18
             },
             {
               "seat": 9,
               "selected": false,
+              "price": 100,
+              "currency": "dollar",
+              "background": "",
               "id": 19
             },
             {
               "seat": 10,
               "selected": false,
+              "price": 100,
+              "currency": "dollar",
+              "background": "",
               "id": 20
             }
           ]
@@ -119,51 +180,81 @@
             {
               "seat": 1,
               "selected": false,
+              "price": 100,
+              "currency": "dollar",
+              "background": "",
               "id": 21
             },
             {
               "seat": 2,
               "selected": false,
+              "price": 100,
+              "currency": "dollar",
+              "background": "",
               "id": 22
             },
             {
               "seat": 3,
               "selected": false,
+              "price": 100,
+              "currency": "dollar",
+              "background": "",
               "id": 23
             },
             {
               "seat": 4,
               "selected": false,
+              "price": 100,
+              "currency": "dollar",
+              "background": "",
               "id": 24
             },
             {
               "seat": 5,
               "selected": false,
+              "price": 100,
+              "currency": "dollar",
+              "background": "",
               "id": 25
             },
             {
               "seat": 6,
               "selected": false,
+              "price": 100,
+              "currency": "dollar",
+              "background": "",
               "id": 26
             },
             {
               "seat": 7,
               "selected": false,
+              "price": 100,
+              "currency": "dollar",
+              "background": "",
               "id": 27
             },
             {
               "seat": 8,
               "selected": false,
+              "price": 100,
+              "currency": "dollar",
+              "background": "",
               "id": 28
             },
             {
               "seat": 9,
               "selected": false,
+              "price": 100,
+              "currency": "dollar",
+              "background": "",
               "id": 29
             },
             {
               "seat": 10,
               "selected": false,
+              "price": 100,
+              "currency": "dollar",
+              "background": "",
               "id": 30
             }
           ]
@@ -174,51 +265,81 @@
             {
               "seat": 1,
               "selected": false,
+              "price": 100,
+              "currency": "dollar",
+              "background": "",
               "id": 31
             },
             {
               "seat": 2,
               "selected": false,
+              "price": 100,
+              "currency": "dollar",
+              "background": "",
               "id": 32
             },
             {
               "seat": 3,
               "selected": false,
+              "price": 100,
+              "currency": "dollar",
+              "background": "",
               "id": 33
             },
             {
               "seat": 4,
               "selected": false,
+              "price": 100,
+              "currency": "dollar",
+              "background": "",
               "id": 34
             },
             {
               "seat": 5,
               "selected": false,
+              "price": 100,
+              "currency": "dollar",
+              "background": "",
               "id": 35
             },
             {
               "seat": 6,
               "selected": false,
+              "price": 100,
+              "currency": "dollar",
+              "background": "",
               "id": 36
             },
             {
               "seat": 7,
               "selected": false,
+              "price": 100,
+              "currency": "dollar",
+              "background": "",
               "id": 37
             },
             {
               "seat": 8,
               "selected": false,
+              "price": 100,
+              "currency": "dollar",
+              "background": "",
               "id": 38
             },
             {
               "seat": 9,
               "selected": false,
+              "price": 100,
+              "currency": "dollar",
+              "background": "",
               "id": 39
             },
             {
               "seat": 10,
               "selected": false,
+              "price": 100,
+              "currency": "dollar",
+              "background": "",
               "id": 40
             }
           ]
@@ -229,56 +350,91 @@
             {
               "seat": 1,
               "selected": false,
+              "price": 100,
+              "currency": "dollar",
+              "background": "",
               "id": 41
             },
             {
               "seat": 2,
               "selected": false,
+              "price": 100,
+              "currency": "dollar",
+              "background": "",
               "id": 42
             },
             {
               "seat": 3,
               "selected": false,
+              "price": 100,
+              "currency": "dollar",
+              "background": "",
               "id": 43
             },
             {
               "seat": 4,
               "selected": false,
+              "price": 100,
+              "currency": "dollar",
+              "background": "",
               "id": 44
             },
             {
               "seat": 5,
               "selected": false,
+              "price": 100,
+              "currency": "dollar",
+              "background": "",
               "id": 45
             },
             {
               "seat": 6,
               "selected": false,
+              "price": 100,
+              "currency": "dollar",
+              "background": "",
               "id": 46
             },
             {
               "seat": 7,
               "selected": false,
+              "price": 100,
+              "currency": "dollar",
+              "background": "",
               "id": 47
             },
             {
               "seat": 8,
               "selected": false,
+              "price": 100,
+              "currency": "dollar",
+              "background": "",
               "id": 48
             },
             {
               "seat": 9,
               "selected": false,
+              "price": 100,
+              "currency": "dollar",
+              "background": "",
               "id": 49
             },
             {
               "seat": 10,
               "selected": false,
+              "price": 100,
+              "currency": "dollar",
+              "background": "",
               "id": 50
             }
           ]
         }
       ],
+      "curve": "",
+      "skew": "",
+      "rotate": "",
+      "marginTop": "0px",
+      "marginLeft": "0px",
       "id": 1
     }
   ]
