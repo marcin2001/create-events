@@ -14,7 +14,6 @@
   
   <div class="container-for-panel-and-map" id="container-map" (click)='selectContainerMap()'>
     <div class="container-for-map" id="map"
-        (mouseup)='functionForUpSection()'
         (mousemove)='functionForMoveSection($event)'
         >
         <div
@@ -22,21 +21,34 @@
           *ngFor='let dataOne of dataSection'
           [id]="'section' + dataOne.id"
           (mousedown)='functionForDownSection($event, dataOne.id)'
+          (mouseup)='functionForUpSection(dataOne.id)'
+          [ngStyle]="{marginTop: dataOne?.marginTop , marginLeft: dataOne?.marginLeft}"
           (click)='selectedSection(dataOne.id)'
         > 
           <div [ngClass]="{'name-section':!changeClassAfterClickEdit , 'name-section-edit':changeClassAfterClickEdit}"> {{ dataOne.numberSection }} </div>
           <div [ngClass]="{'rows':!changeClassAfterClickEdit , 'rows-edit':changeClassAfterClickEdit}">
             <div class="block-for-data-row"  *ngFor='let dataTwo of dataOne.arrayWidthPlaces'>
-              <div [ngClass]="{'rowName':!changeClassAfterClickEdit , 'rowNameEdit':changeClassAfterClickEdit}"><div class="row-span">{{ dataTwo?.nameRow }}</div></div>
+              <div [ngClass]="{'rowName':!changeClassAfterClickEdit , 'rowNameEdit':changeClassAfterClickEdit}"
+              (click)='selectedRow(dataTwo.id , dataOne,id)'>
+                <div class="row-span">{{ dataTwo?.nameRow }}</div>
+              </div>
                 <div 
-                  [ngClass]="{'cheir':!changeClassAfterClickEdit , 'cheirEdit':changeClassAfterClickEdit}" 
-                  [ngStyle]="{border: (place.selected ? '4px solid #0093D7' : '4px solid rgba(0,0,0,0.4)' )}"
+                  [ngStyle]="{color: (place?.background === 'white' ? 'black' : 'white'),
+                    background: place.background,
+                    border: (!place?.selected ? '4px solid rgb(159, 159, 159)' : '4px solid #0093D7')
+                  }"
+                  [ngClass]="{'cheir':!changeClassAfterClickEdit,
+                  'cheirEdit':changeClassAfterClickEdit}"
                   *ngFor='let place of dataTwo.arrWithChair'
                   (click)='selectChair(dataOne.id, place.id , $event)'
                 >
                   <div class="cheir-span"> {{ place?.seat }} </div>
                 </div>
-              <div [ngClass]="{'rowName':!changeClassAfterClickEdit , 'rowNameEdit':changeClassAfterClickEdit}"><div class="row-span">{{ dataTwo?.nameRow }}</div></div>
+              <div
+                [ngClass]="{'rowName':!changeClassAfterClickEdit , 'rowNameEdit':changeClassAfterClickEdit}"
+                (click)='selectedRow(dataTwo.id , dataOne.id)'>
+                <div class="row-span">{{ dataTwo?.nameRow }}</div>
+              </div>
             </div>
           </div> 
         </div>
@@ -136,13 +148,39 @@
           <div class="block-panel-edit-section__title-row-count">
             {{ sectionCountRowName }} count
           </div>
-          <input type="text" [(ngModel)]='sectionRows' (keyup)='changeCountSetAndRow()' class="block-panel-edit-section__inputR">
+          <input type="number" [(ngModel)]='sectionRows' (keyup)='changeCountSetAndRow()' class="block-panel-edit-section__inputR">
         </div>
         <div class="block-panel-edit-section__block-row-count">
           <div class="block-panel-edit-section__title-row-count">
             {{ sectionCountSeatName }} count per Row
           </div>
-          <input type="number" min="1" max="5" [(ngModel)]='sectionSeats' (keyup)='changeCountSetAndRow()' class="block-panel-edit-section__inputS">
+          <input type="number" min="1" max="5" [(ngModel)]='sectionSeats' (keyup)='changeCountSetAndRow($event.target.value)' class="block-panel-edit-section__inputS">
+        </div>
+        <div class="block-panel-edit-row__block-for-input-row-and-title">
+          <div class="block-panel-edit-section__title-section">
+            Price seat in section
+          </div>
+          <div class="block-panel-edit-row__block-for-input">
+            <input 
+              type="text"
+              size="3"
+              class="block-panel-edit-row__input"
+              [(ngModel)]='editDataSection.price'
+              (keyup)='editPriceChairInSection()'
+            >
+          </div>
+        </div>
+        <div class="block-panel-edit-chair__block-for-input-row-and-title">
+          <div class="block-panel-edit-chair__title-row">
+            Seat color
+          </div>
+          <div class="block-panel-edit-chair__block-for-input">
+              <select [(ngModel)]='editDataSection.background' (change)="editBackgroundChairInSection($event.target.value)" class="block-panel-edit-chair__select-color">
+                  <option value="white">White</option>
+                  <option value="rgb(230, 98, 98)">Red</option>
+                  <option value="rgb(81, 136, 255)">Blue</option>
+              </select>
+          </div>
         </div>
         <div class="block-panel-edit-section__block-row-count">
           <div class="block-panel-edit-section__title-row-count">
@@ -199,6 +237,61 @@
         </div>
       </div>
 
+      <!-- EDIT SETTINGS ROW -->
+
+      <div class="block-panel-edit-row" *ngIf='displayPanelsSettings === "panel-settings-row"'>
+        <div class="block-panel-edit-row__title-row-edit">
+          Unit Information
+        </div>
+        <div class="block-panel-edit-row__block-for-input-row-and-title">
+          <div class="block-panel-edit-row__title-row">
+            Row
+          </div>
+          <div class="block-panel-edit-row__block-for-input">
+            <input 
+              type="text"
+              maxlength="4" size="1"
+              class="block-panel-edit-row__input"
+              [(ngModel)]='dataRowEdit.nameRow'
+            >
+          </div>
+        </div>
+        <div class="block-panel-edit-row__block-for-input-row-and-title">
+          <div class="block-panel-edit-row__title-row">
+            Row price
+          </div>
+          <div class="block-panel-edit-row__block-for-input">
+            <input 
+              type="text"
+              size="4"
+              class="block-panel-edit-row__input"
+              [(ngModel)]='dataRowEdit.price'
+              (keyup)='editDataPriceInRow()'
+            >
+          </div>
+        </div>
+        <div class="block-panel-edit-chair__block-for-input-row-and-title">
+          <div class="block-panel-edit-chair__title-row">
+            Seat color
+          </div>
+          <div class="block-panel-edit-chair__block-for-input">
+              <select [(ngModel)]='dataRowEdit.background' (change)="editBackgroundChairInRow()" class="block-panel-edit-chair__select-color">
+                  <option value="white">White</option>
+                  <option value="rgb(230, 98, 98)">Red</option>
+                  <option value="rgb(81, 136, 255)">Blue</option>
+              </select>
+          </div>
+        </div>
+        <div class="block-panel-edit-chair__button" (click)='postEditedRow()' >
+          DONE
+        </div>
+        <hr>
+        <div class="block-panel-edit-chair__block-delete" (click)='deleteRow()' >
+          <i class="fa fa-trash-o" aria-hidden="true"></i>
+          Delete Unit ( {{ dataRowEdit.arrWithChair.length }} )
+        </div>
+      </div>
+
       <!-- edit settings chair -->
 
       <div class="block-panel-edit-chair" *ngIf="displayPanelsSettings==='editing-cair-settings'">
@@ -212,6 +305,7 @@
           <div class="block-panel-edit-chair__block-for-input">
             <input 
               type="text"
+              size="4"
               class="block-panel-edit-chair__input"
               [(ngModel)]='nameChairRow'
               (keyup)='editDataChair($event)'
@@ -225,12 +319,38 @@
           <div class="block-panel-edit-chair__block-for-input">
             <input 
               type="text"
+              size="4"
               class="block-panel-edit-chair__input"
-              [(ngModel)]='nameSeat'
+              [(ngModel)]='dataSelectedChair.seat'
               (keyup)='editDataChair()'
             >
           </div>
-
+        </div>
+        <div class="block-panel-edit-chair__block-for-input-row-and-title">
+          <div class="block-panel-edit-chair__title-row">
+            Seat price
+          </div>
+          <div class="block-panel-edit-chair__block-for-input">
+            <input 
+              type="text"
+              maxlength="8" size="4"
+              class="block-panel-edit-chair__input-price"
+              [(ngModel)]='dataSelectedChair.price'
+              (keyup)='editPriceChair()'
+            >
+          </div>
+        </div>
+        <div class="block-panel-edit-chair__block-for-input-row-and-title">
+          <div class="block-panel-edit-chair__title-row">
+            Seat color
+          </div>
+          <div class="block-panel-edit-chair__block-for-input">
+              <select [(ngModel)]='dataSelectedChair.background' (change)="setBackgroundChair($event.target.value)" class="block-panel-edit-chair__select-color">
+                  <option value="white">White</option>
+                  <option value="rgb(230, 98, 98)">Red</option>
+                  <option value="rgb(81, 136, 255)">Blue</option>
+              </select>
+          </div>
         </div>
         <div class="block-panel-edit-chair__button" (click)='postEditedObject()' >
           DONE
