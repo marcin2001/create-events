@@ -25,5 +25,9 @@ export class CreatePlacesServeice {
     deleleSection(id){
         return this.http.delete(this.URL_SECTION + '/' + id)
     }
+
+    saveAllChange(arr, arrId){
+        return this.http.put(`${this.URL_SECTION}/${arrId}` , arr);
+    }
     
 } 

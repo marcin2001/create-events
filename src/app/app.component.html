@@ -1,1 +1,6 @@
-<app-create-places-in-hall></app-create-places-in-hall>
+<app-create-places-in-hall
+    [dataSection]='dataSection'
+    (postData)='postData($event)'
+    (deleteSection)='deleteSection($event)'
+    (saveAllChange)='saveAllChange($event)'
+></app-create-places-in-hall>

@@ -606,11 +606,11 @@
           ]
         }
       ],
-      "curve": "",
-      "skew": "",
-      "rotate": "",
-      "marginTop": "0px",
-      "marginLeft": "0px",
+      "curve": "-1",
+      "skew": "0",
+      "rotate": "0",
+      "marginTop": "108px",
+      "marginLeft": "122px",
       "id": 1
     }
   ]
