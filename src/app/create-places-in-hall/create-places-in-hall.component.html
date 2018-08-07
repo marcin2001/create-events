@@ -5,15 +5,15 @@
 
     </div>
     <div class="block-for-save-or-close">
-      <button class="button-save" (click)='pushAllSectionInArrayWidthSection()'>
+      <button class="button-save" (click)='saveAllChangesInSection()'>
         SAVE
       </button>
       <i routerLink='/home' class="fa fa-times" aria-hidden="true"></i>
     </div>
   </div>
   
-  <div class="container-for-panel-and-map" id="container-map" (click)='selectContainerMap()'>
-    <div class="container-for-map" id="map"
+  <div class="container-for-panel-and-map" id="container-map">
+    <div class="container-for-map" id="map" (click)='selectContainerMap()'
         (mousemove)='functionForMoveSection($event)'
         >
         <div
@@ -61,10 +61,10 @@
       </div>
       
       <div class="panel-for-menu" *ngIf="displayPanelsSettings==='base-panel-with-tool' || displayPanelsSettings==='panel-setting-section'">
-        <div class="panel-for-menu__tools" (click)='switchDispalyPanelSettings("panel-setting-section")'>1</div>
-        <div class="panel-for-menu__tools">2</div>
-        <div class="panel-for-menu__tools">3</div>
-        <div class="panel-for-menu__tools">4</div>  
+        <div class="panel-for-menu__tools" (click)='switchDispalyPanelSettings("panel-setting-section")'>S</div>
+        <div class="panel-for-menu__tools">#</div>
+        <div class="panel-for-menu__tools">#</div>
+        <div class="panel-for-menu__tools">#</div>  
       </div>
 
       <!-- SETTINGS SECTION -->
@@ -124,13 +124,19 @@
             Delete
           </div>
         </div>
+        <div class="panel-edit-setting-object__block-for-button-cancel">
+           <div class="panel-edit-setting-object__button-cancel"
+            (click)='clickCancelAfterSelected()'
+           >CANCEL</div>
+        </div>
       </div>
       
       <!-- PANRL FOR EDITING SECTION -->
 
       <div class="block-panel-edit-section" *ngIf="displayPanelsSettings === 'panel-edit-section'">
         <div class="block-panel-edit-section__block-for-input">
-            <input [(ngModel)]='sectionNumber' (keyup)='resizeInput($event)' type="text" class="block-panel-edit-section__input-for-number-object">
+            <input [(ngModel)]='dataSection[indexForDataSection].numberSection' 
+            (keyup)='resizeInput($event)' type="text" class="block-panel-edit-section__input-for-number-object">
         </div>
         <div class="block-panel-edit-section__block-for-button-layout-lable">
           <div
@@ -227,7 +233,7 @@
         </div>
         <div class="block-panel-edit-section__block-row-count">
           <div class="block-panel-edit-section__block-for-buttons-cancel-apply">
-            <div class="block-panel-edit-section__button-cancel">
+            <div class="block-panel-edit-section__button-cancel" (click)='clickCancelAfterSelected()'>
               CANCEL
             </div>
             <div class="block-panel-edit-section__button-apply" (click)='changeViewBack()'>
