@@ -12,8 +12,8 @@
     </div>
   </div>
   
-  <div class="container-for-panel-and-map" id="container-map" (click)='selectContainerMap()'>
-    <div class="container-for-map" id="map"
+  <div class="container-for-panel-and-map" id="container-map">
+    <div class="container-for-map" id="map" (click)='selectContainerMap()'
         (mousemove)='functionForMoveSection($event)'
         >
         <div
@@ -135,7 +135,8 @@
 
       <div class="block-panel-edit-section" *ngIf="displayPanelsSettings === 'panel-edit-section'">
         <div class="block-panel-edit-section__block-for-input">
-            <input [(ngModel)]='sectionNumber' (keyup)='resizeInput($event)' type="text" class="block-panel-edit-section__input-for-number-object">
+            <input [(ngModel)]='dataSection[indexForDataSection].numberSection' 
+            (keyup)='resizeInput($event)' type="text" class="block-panel-edit-section__input-for-number-object">
         </div>
         <div class="block-panel-edit-section__block-for-button-layout-lable">
           <div

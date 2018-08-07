@@ -39,6 +39,7 @@ export class CreatePlacesInHallComponent implements OnInit, OnChanges {
   valueRotate = 0;
   valueSkew:string = '0';
   valueCurve:string = '0';
+  indexForDataSection:number;
 
   // DATA FOR EDIT SECTION
   nameChairRow:string = '';
@@ -235,6 +236,7 @@ export class CreatePlacesInHallComponent implements OnInit, OnChanges {
         this.sectionNumber = data.numberSection;
         this.sectionNumber+=1
       })
+      console.log( 'working' )
   }
 
   ngOnChanges(changes):void{
@@ -250,7 +252,7 @@ export class CreatePlacesInHallComponent implements OnInit, OnChanges {
       this.arrayWidthSection.map(a => {
         document.getElementById(a).style.border = 'none';
       });
-      this.displayPanelsSettings = 'panel-setting-section';
+      this.displayPanelsSettings = 'base-panel-with-tool';
     }
   }
 
@@ -427,8 +429,8 @@ export class CreatePlacesInHallComponent implements OnInit, OnChanges {
       } else document.getElementById(a).style.border = 'none';
     })
     if (this.displayPanelsSettings != 'editing-cair-settings' &&
-        this.displayPanelsSettings != 'panel-edit-section' &&
-        this.displayPanelsSettings != "panel-settings-row") {
+    this.displayPanelsSettings != 'panel-edit-section' &&
+    this.displayPanelsSettings != "panel-settings-row") {
       this.displayPanelsSettings = 'panel-setting-object-section';
     }
     this.howManySeatAndRowTogether()
@@ -442,6 +444,14 @@ export class CreatePlacesInHallComponent implements OnInit, OnChanges {
         this.valueRotate = data.rotate;
       }
     })
+    var indexSection = this.dataSection.indexOf( 
+      this.dataSection.filter(a=>{
+        if( a.id === Number(this.idSelectedSectionForDiferentOperation)){
+          return a
+        }
+      })[0]
+    )
+    this.indexForDataSection = indexSection;
   }
 
   clickCancelAfterSelected():void{
@@ -697,6 +707,7 @@ export class CreatePlacesInHallComponent implements OnInit, OnChanges {
       this.deleteSection.emit( this.idSelectedSectionForDiferentOperation );
     }
     this.displayPanelsSettings = 'base-panel-with-tool';
+    this.sectionNumber-=1;
   }
 
   resizeInput(e):void {
