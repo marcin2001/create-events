@@ -3,13 +3,13 @@
     {
       "numberSection": 1,
       "price": 100,
-      "background": "white",
+      "background": "rgb(230, 98, 98)",
       "arrayWidthPlaces": [
         {
           "nameRow": "A",
           "priceGiven": false,
           "backgroundGiven": false,
-          "background": "white",
+          "background": "rgb(230, 98, 98)",
           "price": 100,
           "id": 1,
           "arrWithChair": [
@@ -20,7 +20,7 @@
               "backgroundGiven": false,
               "price": 100,
               "currency": "dollar",
-              "background": "white",
+              "background": "rgb(230, 98, 98)",
               "deleted": false,
               "id": 1
             },
@@ -31,7 +31,7 @@
               "backgroundGiven": false,
               "price": 100,
               "currency": "dollar",
-              "background": "white",
+              "background": "rgb(230, 98, 98)",
               "deleted": false,
               "id": 2
             },
@@ -42,7 +42,7 @@
               "backgroundGiven": false,
               "price": 100,
               "currency": "dollar",
-              "background": "white",
+              "background": "rgb(230, 98, 98)",
               "deleted": false,
               "id": 3
             },
@@ -53,7 +53,7 @@
               "backgroundGiven": false,
               "price": 100,
               "currency": "dollar",
-              "background": "white",
+              "background": "rgb(230, 98, 98)",
               "deleted": false,
               "id": 4
             },
@@ -64,7 +64,7 @@
               "backgroundGiven": false,
               "price": 100,
               "currency": "dollar",
-              "background": "white",
+              "background": "rgb(230, 98, 98)",
               "deleted": false,
               "id": 5
             },
@@ -75,7 +75,7 @@
               "backgroundGiven": false,
               "price": 100,
               "currency": "dollar",
-              "background": "white",
+              "background": "rgb(230, 98, 98)",
               "deleted": false,
               "id": 6
             },
@@ -86,7 +86,7 @@
               "backgroundGiven": false,
               "price": 100,
               "currency": "dollar",
-              "background": "white",
+              "background": "rgb(230, 98, 98)",
               "deleted": false,
               "id": 7
             },
@@ -97,7 +97,7 @@
               "backgroundGiven": false,
               "price": 100,
               "currency": "dollar",
-              "background": "white",
+              "background": "rgb(230, 98, 98)",
               "deleted": false,
               "id": 8
             },
@@ -108,7 +108,7 @@
               "backgroundGiven": false,
               "price": 100,
               "currency": "dollar",
-              "background": "white",
+              "background": "rgb(230, 98, 98)",
               "deleted": false,
               "id": 9
             },
@@ -119,7 +119,7 @@
               "backgroundGiven": false,
               "price": 100,
               "currency": "dollar",
-              "background": "white",
+              "background": "rgb(230, 98, 98)",
               "deleted": false,
               "id": 10
             }
@@ -129,7 +129,7 @@
           "nameRow": "B",
           "priceGiven": false,
           "backgroundGiven": false,
-          "background": "white",
+          "background": "rgb(230, 98, 98)",
           "price": 100,
           "id": 2,
           "arrWithChair": [
@@ -140,7 +140,7 @@
               "backgroundGiven": false,
               "price": 100,
               "currency": "dollar",
-              "background": "white",
+              "background": "rgb(230, 98, 98)",
               "deleted": false,
               "id": 11
             },
@@ -151,7 +151,7 @@
               "backgroundGiven": false,
               "price": 100,
               "currency": "dollar",
-              "background": "white",
+              "background": "rgb(230, 98, 98)",
               "deleted": false,
               "id": 12
             },
@@ -162,7 +162,7 @@
               "backgroundGiven": false,
               "price": 100,
               "currency": "dollar",
-              "background": "white",
+              "background": "rgb(230, 98, 98)",
               "deleted": false,
               "id": 13
             },
@@ -173,7 +173,7 @@
               "backgroundGiven": false,
               "price": 100,
               "currency": "dollar",
-              "background": "white",
+              "background": "rgb(230, 98, 98)",
               "deleted": false,
               "id": 14
             },
@@ -184,7 +184,7 @@
               "backgroundGiven": false,
               "price": 100,
               "currency": "dollar",
-              "background": "white",
+              "background": "rgb(230, 98, 98)",
               "deleted": false,
               "id": 15
             },
@@ -195,7 +195,7 @@
               "backgroundGiven": false,
               "price": 100,
               "currency": "dollar",
-              "background": "white",
+              "background": "rgb(230, 98, 98)",
               "deleted": false,
               "id": 16
             },
@@ -206,7 +206,7 @@
               "backgroundGiven": false,
               "price": 100,
               "currency": "dollar",
-              "background": "white",
+              "background": "rgb(230, 98, 98)",
               "deleted": false,
               "id": 17
             },
@@ -217,7 +217,7 @@
               "backgroundGiven": false,
               "price": 100,
               "currency": "dollar",
-              "background": "white",
+              "background": "rgb(230, 98, 98)",
               "deleted": false,
               "id": 18
             },
@@ -228,7 +228,7 @@
               "backgroundGiven": false,
               "price": 100,
               "currency": "dollar",
-              "background": "white",
+              "background": "rgb(230, 98, 98)",
               "deleted": false,
               "id": 19
             },
@@ -239,7 +239,7 @@
               "backgroundGiven": false,
               "price": 100,
               "currency": "dollar",
-              "background": "white",
+              "background": "rgb(230, 98, 98)",
               "deleted": false,
               "id": 20
             }
@@ -249,7 +249,7 @@
           "nameRow": "C",
           "priceGiven": false,
           "backgroundGiven": false,
-          "background": "white",
+          "background": "rgb(230, 98, 98)",
           "price": 100,
           "id": 3,
           "arrWithChair": [
@@ -260,7 +260,7 @@
               "backgroundGiven": false,
               "price": 100,
               "currency": "dollar",
-              "background": "white",
+              "background": "rgb(230, 98, 98)",
               "deleted": false,
               "id": 21
             },
@@ -271,7 +271,7 @@
               "backgroundGiven": false,
               "price": 100,
               "currency": "dollar",
-              "background": "white",
+              "background": "rgb(230, 98, 98)",
               "deleted": false,
               "id": 22
             },
@@ -282,7 +282,7 @@
               "backgroundGiven": false,
               "price": 100,
               "currency": "dollar",
-              "background": "white",
+              "background": "rgb(230, 98, 98)",
               "deleted": false,
               "id": 23
             },
@@ -293,7 +293,7 @@
               "backgroundGiven": false,
               "price": 100,
               "currency": "dollar",
-              "background": "white",
+              "background": "rgb(230, 98, 98)",
               "deleted": false,
               "id": 24
             },
@@ -304,7 +304,7 @@
               "backgroundGiven": false,
               "price": 100,
               "currency": "dollar",
-              "background": "white",
+              "background": "rgb(230, 98, 98)",
               "deleted": false,
               "id": 25
             },
@@ -315,7 +315,7 @@
               "backgroundGiven": false,
               "price": 100,
               "currency": "dollar",
-              "background": "white",
+              "background": "rgb(230, 98, 98)",
               "deleted": false,
               "id": 26
             },
@@ -326,7 +326,7 @@
               "backgroundGiven": false,
               "price": 100,
               "currency": "dollar",
-              "background": "white",
+              "background": "rgb(230, 98, 98)",
               "deleted": false,
               "id": 27
             },
@@ -337,7 +337,7 @@
               "backgroundGiven": false,
               "price": 100,
               "currency": "dollar",
-              "background": "white",
+              "background": "rgb(230, 98, 98)",
               "deleted": false,
               "id": 28
             },
@@ -348,7 +348,7 @@
               "backgroundGiven": false,
               "price": 100,
               "currency": "dollar",
-              "background": "white",
+              "background": "rgb(230, 98, 98)",
               "deleted": false,
               "id": 29
             },
@@ -359,7 +359,7 @@
               "backgroundGiven": false,
               "price": 100,
               "currency": "dollar",
-              "background": "white",
+              "background": "rgb(230, 98, 98)",
               "deleted": false,
               "id": 30
             }
@@ -369,7 +369,7 @@
           "nameRow": "D",
           "priceGiven": false,
           "backgroundGiven": false,
-          "background": "white",
+          "background": "rgb(230, 98, 98)",
           "price": 100,
           "id": 4,
           "arrWithChair": [
@@ -380,7 +380,7 @@
               "backgroundGiven": false,
               "price": 100,
               "currency": "dollar",
-              "background": "white",
+              "background": "rgb(230, 98, 98)",
               "deleted": false,
               "id": 31
             },
@@ -391,7 +391,7 @@
               "backgroundGiven": false,
               "price": 100,
               "currency": "dollar",
-              "background": "white",
+              "background": "rgb(230, 98, 98)",
               "deleted": false,
               "id": 32
             },
@@ -402,7 +402,7 @@
               "backgroundGiven": false,
               "price": 100,
               "currency": "dollar",
-              "background": "white",
+              "background": "rgb(230, 98, 98)",
               "deleted": false,
               "id": 33
             },
@@ -413,7 +413,7 @@
               "backgroundGiven": false,
               "price": 100,
               "currency": "dollar",
-              "background": "white",
+              "background": "rgb(230, 98, 98)",
               "deleted": false,
               "id": 34
             },
@@ -424,7 +424,7 @@
               "backgroundGiven": false,
               "price": 100,
               "currency": "dollar",
-              "background": "white",
+              "background": "rgb(230, 98, 98)",
               "deleted": false,
               "id": 35
             },
@@ -435,7 +435,7 @@
               "backgroundGiven": false,
               "price": 100,
               "currency": "dollar",
-              "background": "white",
+              "background": "rgb(230, 98, 98)",
               "deleted": false,
               "id": 36
             },
@@ -446,7 +446,7 @@
               "backgroundGiven": false,
               "price": 100,
               "currency": "dollar",
-              "background": "white",
+              "background": "rgb(230, 98, 98)",
               "deleted": false,
               "id": 37
             },
@@ -457,7 +457,7 @@
               "backgroundGiven": false,
               "price": 100,
               "currency": "dollar",
-              "background": "white",
+              "background": "rgb(230, 98, 98)",
               "deleted": false,
               "id": 38
             },
@@ -468,7 +468,7 @@
               "backgroundGiven": false,
               "price": 100,
               "currency": "dollar",
-              "background": "white",
+              "background": "rgb(230, 98, 98)",
               "deleted": false,
               "id": 39
             },
@@ -479,7 +479,7 @@
               "backgroundGiven": false,
               "price": 100,
               "currency": "dollar",
-              "background": "white",
+              "background": "rgb(230, 98, 98)",
               "deleted": false,
               "id": 40
             }
@@ -489,7 +489,7 @@
           "nameRow": "E",
           "priceGiven": false,
           "backgroundGiven": false,
-          "background": "white",
+          "background": "rgb(230, 98, 98)",
           "price": 100,
           "id": 5,
           "arrWithChair": [
@@ -500,7 +500,7 @@
               "backgroundGiven": false,
               "price": 100,
               "currency": "dollar",
-              "background": "white",
+              "background": "rgb(230, 98, 98)",
               "deleted": false,
               "id": 41
             },
@@ -511,7 +511,7 @@
               "backgroundGiven": false,
               "price": 100,
               "currency": "dollar",
-              "background": "white",
+              "background": "rgb(230, 98, 98)",
               "deleted": false,
               "id": 42
             },
@@ -522,7 +522,7 @@
               "backgroundGiven": false,
               "price": 100,
               "currency": "dollar",
-              "background": "white",
+              "background": "rgb(230, 98, 98)",
               "deleted": false,
               "id": 43
             },
@@ -533,7 +533,7 @@
               "backgroundGiven": false,
               "price": 100,
               "currency": "dollar",
-              "background": "white",
+              "background": "rgb(230, 98, 98)",
               "deleted": false,
               "id": 44
             },
@@ -544,7 +544,7 @@
               "backgroundGiven": false,
               "price": 100,
               "currency": "dollar",
-              "background": "white",
+              "background": "rgb(230, 98, 98)",
               "deleted": false,
               "id": 45
             },
@@ -555,7 +555,7 @@
               "backgroundGiven": false,
               "price": 100,
               "currency": "dollar",
-              "background": "white",
+              "background": "rgb(230, 98, 98)",
               "deleted": false,
               "id": 46
             },
@@ -566,7 +566,7 @@
               "backgroundGiven": false,
               "price": 100,
               "currency": "dollar",
-              "background": "white",
+              "background": "rgb(230, 98, 98)",
               "deleted": false,
               "id": 47
             },
@@ -577,7 +577,7 @@
               "backgroundGiven": false,
               "price": 100,
               "currency": "dollar",
-              "background": "white",
+              "background": "rgb(230, 98, 98)",
               "deleted": false,
               "id": 48
             },
@@ -588,7 +588,7 @@
               "backgroundGiven": false,
               "price": 100,
               "currency": "dollar",
-              "background": "white",
+              "background": "rgb(230, 98, 98)",
               "deleted": false,
               "id": 49
             },
@@ -599,18 +599,18 @@
               "backgroundGiven": false,
               "price": 100,
               "currency": "dollar",
-              "background": "white",
+              "background": "rgb(230, 98, 98)",
               "deleted": false,
               "id": 50
             }
           ]
         }
       ],
-      "curve": "-1",
-      "skew": "0",
+      "curve": -100,
+      "skew": "20",
       "rotate": "0",
       "marginTop": "108px",
-      "marginLeft": "122px",
+      "marginLeft": "258px",
       "id": 1
     }
   ]

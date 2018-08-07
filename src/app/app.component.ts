@@ -35,21 +35,16 @@ export class AppComponent implements OnInit {
   }
 
   saveAllChange(arr){
-    var arrPost:any = arr.filter(a=>{ return a})[0];
-    var arrId:any = [];
+    let arrPost:any = arr.filter(a=>{ return a})[0];
+    let arrId:any = [];
     arrId.push(arrPost.map(data=>{
       return data.id
     }))
     arrId = arrId[0];
 
     for (let i = 0; i < arrPost.length; i++) {
-      this.myService.saveAllChange(arrPost[i],arrId[i]).subscribe(data=>{
-        console.log( data )
-      })
+      this.myService.saveAllChange(arrPost[i],arrId[i]).subscribe(data=>{})
     }
-    
-
-    console.log( arrPost , arrId )
   }
   
 }

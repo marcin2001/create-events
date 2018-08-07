@@ -1,5 +1,6 @@
 import { Component, OnInit, OnChanges, Input, Output, EventEmitter } from '@angular/core';
-import { CreatePlacesServeice } from './create-places-in-hall.service';
+import { core } from '@angular/compiler';
+
 @Component({
   selector: 'app-create-places-in-hall',
   templateUrl: './create-places-in-hall.component.html',
@@ -14,39 +15,38 @@ export class CreatePlacesInHallComponent implements OnInit, OnChanges {
   @Output() deleteSection = new EventEmitter();
   @Output() saveAllChange = new EventEmitter();
   
-  copyDatasSection: any = [];
-  selectedElementId = 1;
-  arrayWidthSection: any = [];
-  idSelectedSectionForDiferentOperation: string = '';
-  changeClassAfterClickEdit = false;
-  idForSelectElementsAfterCreateThem = 1;
-  memoryEvents = 1;
-  needTitle = true;
+  copyDatasSection:any = [];
+  selectedElementId:number = 1;
+  arrayWidthSection:string[] = [];
+  idSelectedSectionForDiferentOperation:string = '';
+  changeClassAfterClickEdit:boolean = false;
+  idForSelectElementsAfterCreateThem:number = 1;
+  memoryEvents:number = 1;
+  needTitle:boolean = true;
   nowSelectedSetion = false;
   dataSelectedChair:any = {}; 
 
 
   // DATA FOR SECTION
-  displayPanelsSettings = 'base-panel-with-tool';
-  sectionNumber = 1;
+  displayPanelsSettings:string = 'base-panel-with-tool';
+  sectionNumber:number = 1;
   sectionSelect: string = 'Assigned Seating';
   sectionRows: number = 5;
   sectionSeats: number = 10;
   priceAllSeatInSectoin = 100;
   editDataSection:any = {};
   currency = "dollar";
-  background = 'gray';
   valueRotate = 0;
   valueSkew:string = '0';
   valueCurve:string = '0';
 
   // DATA FOR EDIT SECTION
-  nameChairRow = '';
-  nameSeat = '';
-  idEditedSection = 0;
-  idEditedChair = 0;
-  editedObjectForPost: any;
-  chosenAlign = 'justify';
+  nameChairRow:string = '';
+  nameSeat:string = '';
+  idEditedSection:number = 0;
+  idEditedChair:number = 0;
+  editedObjectForPost:any;
+  chosenAlign:string = 'justify';
   sectionCountRowName = 'Row';
   sectionCountSeatName = 'Seat';
   sectionTotalChair: number = 0;
@@ -57,33 +57,29 @@ export class CreatePlacesInHallComponent implements OnInit, OnChanges {
 
   // DATA CURVE SECTION
 
-  isMouseForCurveDown = false;
-  arrBetween: any = [];
-  firstElements: any = [];
-  secondElements: any = [];
+  isMouseForCurveDown:boolean = false;
+  arrBetween: any[] = [];
+  firstElements: any[] = [];
+  secondElements: any[] = [];
   curveNameSection:any;
-  countSeats;
+  countSeats:number;
 
 
   // DATA EDIT ROW
 
   dataRowEdit:any = {};
 
-  constructor(
-    private myService: CreatePlacesServeice
-  ) { }
 
-
-  ngOnInit() {
+  ngOnInit():void {
     document.getElementById('container').style.height = window.innerHeight + 'px';
   }
 
-  relozateDataRotate(id,value){
+  relozateDataRotate(id,value):void{
     this.fixedValueRotate = value;
-    var slider = document.getElementById('section' + id);
+    var slider:any = document.getElementById('section' + id);
     slider.style.transform = 'rotate(' + value + 'deg)';
     var elements: any = slider.getElementsByTagName('DIV');
-    var arrWithElements: any = [];
+    var arrWithElements: any[] = [];
     for (let i = 0; i < elements.length; i++) {
       arrWithElements.push(elements[i])
     }
@@ -111,7 +107,7 @@ export class CreatePlacesInHallComponent implements OnInit, OnChanges {
   relizateAllDataOverSectionSkew(value:string,id:number):void{
     var slider = document.getElementById('section'+id);
     var elements: any = slider.getElementsByTagName('DIV');
-    var arrWithElements: any = [];
+    var arrWithElements: any[] = [];
     for (let i = 0; i < elements.length; i++) {
       arrWithElements.push(elements[i])
     }
@@ -125,9 +121,9 @@ export class CreatePlacesInHallComponent implements OnInit, OnChanges {
     })
   }
 
-  FullInArrWithElements(id, data, value){
+  FullInArrWithElements(id, data, value):void{
       this.countSeats = data;
-      var index = 0;
+      var index:number = 0;
       var slider = document.getElementById('section' + id);
       var elements: any = slider.getElementsByTagName('DIV')
       var arrWithElements: any = [];
@@ -145,7 +141,7 @@ export class CreatePlacesInHallComponent implements OnInit, OnChanges {
           return data
          }
       })
-      var seatOnTwo = Math.round(this.countSeats / 2);
+      var seatOnTwo:any = Math.round(this.countSeats / 2);
       for (let i = 0; i < this.arrBetween.length; i++) {
         if (i === seatOnTwo) {
           i += Math.floor(this.countSeats / 2);
@@ -168,11 +164,10 @@ export class CreatePlacesInHallComponent implements OnInit, OnChanges {
   }
 
   relizateAllDataOverSectionCurve(value):void{
-      console.log( value )
-      var valueNumb = Number(value);
-      var index = Math.floor(this.countSeats / 2);
-      var checkValue = Math.round(this.countSeats / 2) - 1;
-      var checkLastElement = Math.floor(this.countSeats / 2);
+      var valueNumb:number = Number(value);
+      var index:number = Math.floor(this.countSeats / 2);
+      var checkValue:number = Math.round(this.countSeats / 2) - 1;
+      var checkLastElement:number = Math.floor(this.countSeats / 2);
       for (let i = 0; i < this.firstElements.length; i++) {
         if (value < 0) {
           this.firstElements[i].style.marginBottom = (index + valueNumb + "px");
@@ -214,7 +209,7 @@ export class CreatePlacesInHallComponent implements OnInit, OnChanges {
             this.secondElements[i].style.marginBottom = '-' + marginOtherElements1;
           };
         } else {
-          var sum: any = (index + valueNumb + "px");
+          var sum:any = (index + valueNumb + "px");
           this.secondElements[i].style.marginTop = '-' + sum;
           index = index + valueNumb;
           sum = '';
@@ -226,11 +221,10 @@ export class CreatePlacesInHallComponent implements OnInit, OnChanges {
             this.secondElements[i].style.marginTop = '-' + marginOtherElements2;
           };
         }
-
       }
   }
 
-  realizateAllData(){
+  realizateAllData():void{
     this.dataSection.map(data=>{
         this.arrBetween = [];
         this.firstElements= [];
@@ -238,10 +232,12 @@ export class CreatePlacesInHallComponent implements OnInit, OnChanges {
         this.relizateAllDataOverSectionSkew(data.skew,data.id);
         this.FullInArrWithElements(data.id,data.arrayWidthPlaces[0].arrWithChair.length,data.curve);
         this.relozateDataRotate( data.id, data.rotate );
+        this.sectionNumber = data.numberSection;
+        this.sectionNumber+=1
       })
   }
 
-  ngOnChanges(changes){
+  ngOnChanges(changes):void{
     if (changes.dataSection && changes.dataSection.currentValue && this.dataSection.length != 0) {
       this.arrayWidthSection = [];
       this.pushAllSectionInArrayWidthSection(this.dataSection);
@@ -249,7 +245,7 @@ export class CreatePlacesInHallComponent implements OnInit, OnChanges {
     }
   }
 
-  selectContainerMap(value) {
+  selectContainerMap(value):void {
     if (!this.nowSelectedSetion) {
       this.arrayWidthSection.map(a => {
         document.getElementById(a).style.border = 'none';
@@ -258,7 +254,7 @@ export class CreatePlacesInHallComponent implements OnInit, OnChanges {
     }
   }
 
-  saveAllChangesInSection(){
+  saveAllChangesInSection():void{
     var arrAll:number[] = [];
     arrAll.push(this.dataSection.map(data=>{
       return data
@@ -266,19 +262,19 @@ export class CreatePlacesInHallComponent implements OnInit, OnChanges {
     this.saveAllChange.emit(arrAll);
   }
 
-  pushAllSectionInArrayWidthSection(data) {
+  pushAllSectionInArrayWidthSection(data):void {
     data.map(a=>{
       this.arrayWidthSection.push('section' + a.id)
     })
   }
 
-  switchDispalyPanelSettings(argument) {
+  switchDispalyPanelSettings(argument):void {
     this.displayPanelsSettings = argument;
   }
 
-  createDataForSection(id) {
-    var idForChair = 1;
-    var alphabet = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l'];
+  createDataForSection(id):void {
+    var idForChair:number = 1;
+    var alphabet:string[] = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
     var object = {
       numberSection: this.sectionNumber,
       price: this.priceAllSeatInSectoin,
@@ -290,9 +286,9 @@ export class CreatePlacesInHallComponent implements OnInit, OnChanges {
       marginTop: '0px',
       marginLeft: "0px"
     }
-    var sectRow = Number(this.sectionRows) + 1;
-    var sectSeat = Number(this.sectionSeats) + 1;
-    var index = 1;
+    var sectRow:number = Number(this.sectionRows) + 1;
+    var sectSeat:number = Number(this.sectionSeats) + 1;
+    var index:number = 1;
     while (index < sectRow) {
       object.arrayWidthPlaces.push(
         {
@@ -325,23 +321,21 @@ export class CreatePlacesInHallComponent implements OnInit, OnChanges {
         idForChair++;
       }
     })
-    var dataId = 1
     this.postData.emit(object)
     this.sectionNumber++;
     this.switchDispalyPanelSettings('base-panel-with-tool');
     this.idForSelectElementsAfterCreateThem++;
   }
 
-  duplicateSection() {
-    var arr = this.dataSection.filter(a => a.id === this.idSelectedSectionForDiferentOperation)[0];
-    arr.numberSection = this.sectionNumber;
-    this.sectionNumber++;
+  duplicateSection():void {
+    let arr = Object.assign( {}, this.dataSection.filter(a => a.id === this.idSelectedSectionForDiferentOperation)[0]);
+    arr.numberSection = arr.numberSection+=1;
     var arrAll:number[] = [];
     arrAll.push(this.dataSection.map(data=>{
       return data
     }))
     this.saveAllChange.emit(arrAll);
-    this.postData.emit( arr );
+    this.postData.emit(arr);
   }
 
 
@@ -349,13 +343,13 @@ export class CreatePlacesInHallComponent implements OnInit, OnChanges {
 
   // FUNCTIONAL ROTATE SECTION
 
-  sliderMouseMove(value) {
+  sliderMouseMove(value):void {
     this.fixedValueRotate = value;
-    var id = this.idSelectedSectionForDiferentOperation;
-    var slider = document.getElementById('section' + id);
+    var id:number|string = this.idSelectedSectionForDiferentOperation;
+    var slider:any = document.getElementById('section' + id);
     slider.style.transform = 'rotate(' + value + 'deg)';
-    var elements: any = slider.getElementsByTagName('DIV');
-    var arrWithElements: any = [];
+    var elements:any = slider.getElementsByTagName('DIV');
+    var arrWithElements:any = [];
     for (let i = 0; i < elements.length; i++) {
       arrWithElements.push(elements[i])
     }
@@ -377,17 +371,16 @@ export class CreatePlacesInHallComponent implements OnInit, OnChanges {
       if( data.id === this.idSelectedSectionForDiferentOperation ){
         data.rotate = value;
       }
-    })
-    
+    }) 
   }
-
 
 
   // FUNCTIONAL SKEW SECTION
 
-  skewSection(value) {
-    var id = this.idSelectedSectionForDiferentOperation;
-    var slider = document.getElementById('section' + id);
+
+  skewSection(value):void {
+    var id:number|string = this.idSelectedSectionForDiferentOperation;
+    var slider:any = document.getElementById('section' + id);
     var elements: any = slider.getElementsByTagName('DIV');
     var arrWithElements: any = [];
     for (let i = 0; i < elements.length; i++) {
@@ -407,20 +400,17 @@ export class CreatePlacesInHallComponent implements OnInit, OnChanges {
       }
     })
   }
-
-
-
-
-
+  
+  
   // FUNCTIONAL MOVE SECTION
 
 
-  isMouseDown = false;
-  contX = 0;
-  contY = 0;
-  idElem;
+  isMouseDown:boolean = false;
+  contX:number = 0;
+  contY:number = 0;
+  idElem:string;
 
-  functionForDownSection(e, id) {
+  functionForDownSection(e, id):void {
     this.selectedSection(id)
     this.idElem = "section" + id;
     this.contX = (e.clientX - document.getElementById(this.idElem).offsetLeft + document.getElementById('map').offsetLeft);
@@ -428,7 +418,7 @@ export class CreatePlacesInHallComponent implements OnInit, OnChanges {
     this.isMouseDown = true;
   }
 
-  selectedSection(id) {
+  selectedSection(id):void {
     this.nowSelectedSetion = true;
     this.idSelectedSectionForDiferentOperation = id;
     this.arrayWidthSection.map(a => {
@@ -449,11 +439,22 @@ export class CreatePlacesInHallComponent implements OnInit, OnChanges {
       if( data.id === this.idSelectedSectionForDiferentOperation ){
         this.valueSkew = data.skew;
         this.valueCurve = data.curve;
+        this.valueRotate = data.rotate;
       }
     })
   }
 
-  howManySeatAndRowTogether() {
+  clickCancelAfterSelected():void{
+    let id:string = this.idSelectedSectionForDiferentOperation;
+    this.arrayWidthSection.map(a => {
+      if (this.changeClassAfterClickEdit != true) {
+        document.getElementById(a).style.border = 'none';
+      }  
+    })
+    this.displayPanelsSettings = 'base-panel-with-tool'
+  }
+
+  howManySeatAndRowTogether():void {
     var arr = this.dataSection.filter(data => data.id === this.idSelectedSectionForDiferentOperation)[0];
     this.editDataSection = this.dataSection.filter(data => data.id === this.idSelectedSectionForDiferentOperation)[0];
     var arrPlaces = arr.arrayWidthPlaces;
@@ -463,9 +464,9 @@ export class CreatePlacesInHallComponent implements OnInit, OnChanges {
     }
   }
 
-  changeCountSetAndRow(value) {
-    var idForChair = 1;
-    var alphabet = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
+  changeCountSetAndRow(value):void {
+    var idForChair:number = 1;
+    var alphabet:string[] = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
     var id = this.dataSection.indexOf( 
       this.dataSection.filter(a=>{
         if( a.id === Number(this.idSelectedSectionForDiferentOperation)){
@@ -536,15 +537,14 @@ export class CreatePlacesInHallComponent implements OnInit, OnChanges {
     this.secondElements = [];
   }
 
-  functionForUpSection(id) {
-    var arr = this.dataSection.filter(data => data.id === id)[0];
+  functionForUpSection(id):void {
     this.isMouseDown = false;
   }
 
-  functionForMoveSection(e) {
+  functionForMoveSection(e):void {
     if (this.isMouseDown) {
-      var x = e.clientX;
-      var y = e.clientY;
+      var x:number = e.clientX;
+      var y:number = e.clientY;
       var id = this.dataSection.indexOf( 
         this.dataSection.filter(a=>{
           if( a.id === Number(this.idSelectedSectionForDiferentOperation)){
@@ -560,12 +560,12 @@ export class CreatePlacesInHallComponent implements OnInit, OnChanges {
   }
 
 
-
   // FUNCTIONS FOR EDIT SECTION
 
-  changeViewMapAndSection() {
-    var map = document.getElementById('map');
-    var section = document.getElementById('section' + this.idSelectedSectionForDiferentOperation);
+
+  changeViewMapAndSection():void {
+    var map:any = document.getElementById('map');
+    var section:any = document.getElementById('section' + this.idSelectedSectionForDiferentOperation);
     section.style.border = 'none';
     map.style.background = 'rgba(0,0,0,0.65)';
     section.style.pointerEvents = 'none';
@@ -574,22 +574,18 @@ export class CreatePlacesInHallComponent implements OnInit, OnChanges {
     this.needTitle = false;
   }
 
-  changeViewBack() {
-    var map = document.getElementById('map');
-    var section = document.getElementById('section' + this.idSelectedSectionForDiferentOperation);
+  changeViewBack():void {
+    var map:any = document.getElementById('map');
+    var section:any = document.getElementById('section' + this.idSelectedSectionForDiferentOperation);
     section.style.border = '';
     map.style.background = 'rgba(0,0,0,0.04)';
     section.style.pointerEvents = 'all';
     this.changeClassAfterClickEdit = false;
     this.displayPanelsSettings = 'base-panel-with-tool';
     this.needTitle = true;
-    // this.myService.updateSections( this.idSelectedSectionForDiferentOperation , this.dataSection[Number(this.idSelectedSectionForDiferentOperation)-1] )
-    // .subscribe(data=>{
-    //   this.refreshDataSection()
-    // })
   }
 
-  selectChair(idSection, idCair, event) {
+  selectChair(idSection, idCair, event):void {
     if( this.dataRowEdit.nameRow != undefined ) {
       this.dataRowEdit.arrWithChair.map(a=>{
         a.selected = false
@@ -612,9 +608,7 @@ export class CreatePlacesInHallComponent implements OnInit, OnChanges {
     this.editedObjectForPost = arr;
   }
 
-
-
-  editDataChair() {
+  editDataChair():void {
     var arr = this.dataSection.filter(data => data.id === this.idEditedSection)[0];
     arr.arrayWidthPlaces.map(a => {
       a.arrWithChair.map(data => {
@@ -626,15 +620,15 @@ export class CreatePlacesInHallComponent implements OnInit, OnChanges {
     })
   }
 
-  editPriceChair(){
+  editPriceChair():void{
     this.dataSelectedChair.priceGiven = true;
   }
 
-  editBackgroundChair(){
+  editBackgroundChair():void{
     this.dataSelectedChair.backgroundGiven = true;
   }
 
-  editBackgroundChairInSection(){
+  editBackgroundChairInSection():void{
     this.editDataSection.arrayWidthPlaces.map(dataRow=>{
       if( dataRow.backgroundGiven === false ) {
         dataRow.background = this.editDataSection.background;
@@ -647,7 +641,7 @@ export class CreatePlacesInHallComponent implements OnInit, OnChanges {
     })
   }
 
-  editPriceChairInSection(){
+  editPriceChairInSection():void{
     this.editDataSection.arrayWidthPlaces.map(dataRow=>{
       if( dataRow.priceGiven === false ) {
         dataRow.price = this.editDataSection.price;
@@ -660,7 +654,7 @@ export class CreatePlacesInHallComponent implements OnInit, OnChanges {
     })
   }
 
-  postEditedObject() {
+  postEditedObject():void {
     this.dataSection.map(a => {
       if (a.id === this.editedObjectForPost.id) {
         a.arrayWidthPlaces.map(data => {
@@ -673,9 +667,8 @@ export class CreatePlacesInHallComponent implements OnInit, OnChanges {
     this.displayPanelsSettings = 'panel-edit-section';
   }
 
-  deleteChair() {
-    var arr = this.dataSection.filter(data => data.id === this.idEditedSection);
-    arr = arr[0];
+  deleteChair():void {
+    var arr = this.dataSection.filter(data => data.id === this.idEditedSection)[0];
     arr.arrayWidthPlaces.map(a => {
       a.arrWithChair.map(data => {
         if (data.id === this.idEditedChair) {
@@ -688,7 +681,7 @@ export class CreatePlacesInHallComponent implements OnInit, OnChanges {
     })
   }
 
-  setBackgroundChair(color){
+  setBackgroundChair(color):void{
     this.dataSelectedChair.background = color;
     this.editBackgroundChair()
   }
@@ -696,7 +689,8 @@ export class CreatePlacesInHallComponent implements OnInit, OnChanges {
 
   // FUNCTION DELETE SECTOIN
 
-  deleteSelectedSection() {
+
+  deleteSelectedSection():void {
     if (this.idSelectedSectionForDiferentOperation != '') {
       var idElements = this.arrayWidthSection.indexOf('section' + this.idSelectedSectionForDiferentOperation);
       this.arrayWidthSection.splice(idElements, 1)
@@ -705,9 +699,9 @@ export class CreatePlacesInHallComponent implements OnInit, OnChanges {
     this.displayPanelsSettings = 'base-panel-with-tool';
   }
 
-  resizeInput(e) {
+  resizeInput(e):void {
     var inputs = document.getElementsByTagName('INPUT');
-    var arr = [];
+    var arr:any[] = [];
     for (let i = 0; i < inputs.length; i++) {
       arr.push(inputs[i])
     }
@@ -719,37 +713,32 @@ export class CreatePlacesInHallComponent implements OnInit, OnChanges {
     })
   }
 
-  changeAlignment(arg) {
+  changeAlignment(arg):void {
     this.chosenAlign = arg;
   }
 
 
-
-
-
-
-
-
   // FUNCTIONS FOR SELECTED AND EDIT DATA ROW
 
-  selectedRow(RowsId , SectionId){
+
+  selectedRow(RowsId , SectionId):void{
     var arr = this.dataSection.filter(data => data.id === SectionId)[0];
     arr.arrayWidthPlaces.map(a => {
       if( a.id === RowsId ) {
         this.dataRowEdit = a
         a.arrWithChair.map( data => {
           data.selected = true
-        } )
+        })
       } else {
          a.arrWithChair.map( data => {
           data.selected = false
-        } )
+        })
       }
     })
     this.displayPanelsSettings = "panel-settings-row";
   }
 
-  editDataPriceInRow(){
+  editDataPriceInRow():void{
     this.dataRowEdit.priceGiven = true;
     this.dataRowEdit.arrWithChair.map(data=>{
       if( data.priceGiven === false ){
@@ -758,7 +747,7 @@ export class CreatePlacesInHallComponent implements OnInit, OnChanges {
     })
   }
 
-  editBackgroundChairInRow(color){
+  editBackgroundChairInRow(color):void{
     this.dataRowEdit.backgroundGiven = true;
     this.dataRowEdit.arrWithChair.map(data=>{
       if( data.backgroundGiven === false ){
@@ -767,14 +756,14 @@ export class CreatePlacesInHallComponent implements OnInit, OnChanges {
     })
   }
 
-  deleteRow(){
+  deleteRow():void{
     this.dataRowEdit.arrWithChair.map(data => {
       data.deleted = true
     })
   }
 
 
-  postEditedRow(){
+  postEditedRow():void{
     this.dataRowEdit.arrWithChair.map(data => {
       data.selected = false
     })
@@ -784,7 +773,8 @@ export class CreatePlacesInHallComponent implements OnInit, OnChanges {
 
   // FUNCTIONAL FOR CURVE SECTION
 
-  downMouceForCurve() {
+
+  downMouceForCurve():void {
     this.isMouseForCurveDown = true;
     if (this.arrBetween.length === 0) {
       var id = this.dataSection.indexOf( 
@@ -794,7 +784,6 @@ export class CreatePlacesInHallComponent implements OnInit, OnChanges {
           }
         })[0]
       )
-      
       this.countSeats = this.dataSection[id].arrayWidthPlaces[0].arrWithChair.length;
       var index = 0;
       var slider = document.getElementById('section' + this.idSelectedSectionForDiferentOperation);
@@ -834,19 +823,18 @@ export class CreatePlacesInHallComponent implements OnInit, OnChanges {
       this.firstElements.splice(this.firstElements.indexOf(undefined));
       this.secondElements.splice(this.secondElements.indexOf(undefined)).reverse();
     }
-
   }
 
-  upMouseForCurve() {
+  upMouseForCurve():void {
     this.isMouseForCurveDown = false;
   }
 
-  curveSection(value) {
+  curveSection(value):void {
     if (this.isMouseForCurveDown) {
-      var valueNumb = Number(value);
-      var index = Math.floor(this.countSeats / 2);
-      var checkValue = Math.round(this.countSeats / 2) - 1;
-      var checkLastElement = Math.floor(this.countSeats / 2);
+      var valueNumb:number = Number(value);
+      var index:number = Math.floor(this.countSeats / 2);
+      var checkValue:number = Math.round(this.countSeats / 2) - 1;
+      var checkLastElement:number = Math.floor(this.countSeats / 2);
       for (let i = 0; i < this.firstElements.length; i++) {
         if (value < 0) {
           this.firstElements[i].style.marginBottom = (index + valueNumb + "px");
@@ -875,7 +863,7 @@ export class CreatePlacesInHallComponent implements OnInit, OnChanges {
       }
       index = Math.floor(this.countSeats / 2);
       checkValue = Math.round(this.countSeats / 2) - 1;
-      var checkLastElement = Math.floor(this.countSeats / 2);
+      var checkLastElement:number = Math.floor(this.countSeats / 2);
       for (let i = 0; i < this.secondElements.length; i++) {
         if (value <= 0) {
           this.secondElements[i].style.marginBottom = (index + valueNumb + "px");
