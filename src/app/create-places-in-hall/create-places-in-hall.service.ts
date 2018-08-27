@@ -15,15 +15,19 @@ export class CreatePlacesServeice {
     }
 
     postDataSection(data){
-        return this.http.post( this.URL_SECTION, data )
+        return this.http.post( this.URL_SECTION, data );
     }
     
     updateSections(id , object){
-        return this.http.put( this.URL_SECTION + '/' + id , object )
+        return this.http.put( this.URL_SECTION + '/' + id , object );
     }
 
     deleleSection(id){
         return this.http.delete(this.URL_SECTION + '/' + id)
+    }
+
+    saveAllChange(arr, arrId){
+        return this.http.put(`${this.URL_SECTION}/${arrId}` , arr);
     }
     
 } 
